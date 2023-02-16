@@ -14,7 +14,7 @@
                 @endif
                 <div class="card">
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> List Users
+                        <i class="fa fa-align-justify"></i> List Pengarang
                     </div>
                     <div class="card-body">
                         <table class="table table-responsive-sm table-bordered table-striped table-sm">
