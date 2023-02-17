@@ -2,6 +2,11 @@
 
 use App\Http\Controllers\Auth\AuthContoller;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BukuController;
+use App\Http\Controllers\PeminjamanBukuController;
+use App\Http\Controllers\PenerbitController;
+use App\Http\Controllers\PengarangController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,3 +42,9 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/signout', [AuthContoller::class, 'signOut'])->name('signout');
 
 Route::get('/reload-captcha', [AuthContoller::class, 'reloadCaptcha']);
+
+Route::resource('buku',BukuController::class);
+Route::resource('peminjaman-buku', PeminjamanBukuController::class);
+Route::resource('penerbit]',PenerbitController::class);
+Route::resource('pengarang',PengarangController::class);
+
