@@ -82,9 +82,6 @@
     </div>
 
 <!-- jQuery first, then Popper.js, Bootstrap, then CoreUI  -->
-<script type="application/javascript" src="{{ asset('vendor/coreui/js/jquery.slim.min.js') }}"></script>
-<script type="application/javascript" src="{{ asset('vendor/coreui/js/bootstrap.bundle.min.js') }}"></script>
-<script type="application/javascript" src="{{ asset('vendor/coreui/js/coreui.min.js') }}"></script>
 <script type="application/javascript" src="{{ asset('vendor/coreui/js/coreui-utilities.min.js') }}"></script>
 
 </body>

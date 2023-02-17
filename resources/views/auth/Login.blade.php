@@ -100,9 +100,11 @@
                             </form>
                         </div>
                     </div>
-                    <div class="card text-white py-5 d-md-down-none" style="width:44%;background-color: #373a49;">
-                        <div class="card-body text-center">
-                            <img src="{{asset('images/Laravel.png')}}" style="vertical-align: middle;width:200px">
+                    <div class="card d-md-down-none" style="background-color: #373a49;">
+                        <div class="card-body text-center bg-right">
+                            <div>
+                                <img src="{{asset('images/library.png')}}" style="width:300px">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -110,9 +112,6 @@
         </div>
     </div>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>    
-<script type="application/javascript" src="{{ asset('vendor/coreui/js/jquery.slim.min.js') }}"></script>
-<script type="application/javascript" src="{{ asset('vendor/coreui/js/bootstrap.bundle.min.js') }}"></script>
-<script type="application/javascript" src="{{ asset('vendor/coreui/js/coreui.min.js') }}"></script>
 <script type="application/javascript" src="{{ asset('vendor/coreui/js/coreui-utilities.min.js') }}"></script>
 <script type="text/javascript">
     $('#reload-captha').on('click', function (event) {
@@ -126,5 +125,13 @@
     });
 </script>
 </body>
+<style>
+    .bg-right{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+</style>
 
 </html>

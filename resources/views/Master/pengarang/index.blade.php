@@ -22,8 +22,8 @@
                                 <tr>
                                     <th class="text-center">No</th>
                                     <th style="text-align: center;">Action</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
+                                    <th>Nama Pengarang</th>
+                                    <th>Negara</th>
                                 </tr>
                             </thead>
                             @if (count($listUser) <= 0) 

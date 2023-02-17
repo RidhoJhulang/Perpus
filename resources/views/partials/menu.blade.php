@@ -1,7 +1,7 @@
 <div class="c-sidebar c-sidebar-dark c-sidebar-fixed c-sidebar-lg-show" id="sidebar">
     <div class="c-sidebar-brand d-lg-down-none">
         <div class="flex flex-shrink md:w-1/3 justify-center md:justify-start text-white">
-                <img src="{{ asset('images/Laravel.png') }}" style="width:13%;margin-left:40px;"
+                <img src="{{ asset('images/icon-library.png') }}" style="width:13%;margin-left:25px;"
                     alt="">&nbsp;
                 <span class="text-xl pl-2">{{ config('app.name', 'Laravel') }}</span>
         </div>
