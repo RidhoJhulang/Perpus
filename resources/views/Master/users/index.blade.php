@@ -17,42 +17,46 @@
                         <i class="fa fa-align-justify"></i> List Users
                     </div>
                     <div class="card-body">
-                        <table class="table table-responsive-sm table-bordered table-striped table-sm">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">No</th>
-                                    <th style="text-align: center;">Action</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                </tr>
-                            </thead>
-                            @if (count($listUser) <= 0) 
-                                <tr>
-                                    <td colspan="9" class="text-center">Data Empty</td>
-                                </tr>
-                            @else
-                                <?php $no = 1; ?>
-                                <tbody>
-                                    @foreach($listUser as $row)
+                        <div class="table-responsive">
+                            <table class="table table-responsive-sm table-bordered table-striped table-sm">
+                                <thead>
                                     <tr>
-                                        <td class="text-center">{{$no}}</td>
-                                        <td>
-                                            <div style="text-align:center; vertical-align:middle;">
-                                                @csrf
-                                                @method('DELETE')
-                                                <button type="button" class="btn btn-danger delete-confirm" data-id="{{ $row->id }}" tooltip="Delete"><i class="cil-trash"></i></button>
-                                                <button type="button" class="reset-pass btn btn-info btn-md mr-1 btn-reset-pass"  data-reset="{{$row->id}}" tooltip="Reset password"><i class="cil-reload"></i></button>
-                                            </div>
-                                        </td>
-                                        <td style="vertical-align:middle;">{{ $row->name}}</td>
-                                        <td style="vertical-align:middle;">{{ $row->email }}</td>
+                                        <th class="text-center">No</th>
+                                        <th style="text-align: center;">Action</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
                                     </tr>
-                                    <?php $no++; ?>
-                                    @endforeach
-                            @endif
-                                </tbody>
-                        </table>
-                        {{ $listUser->links('vendor.pagination.custom') }}
+                                </thead>
+                                @if (count($listUser) <= 0) 
+                                    <tr>
+                                        <td colspan="9" class="text-center">Data Empty</td>
+                                    </tr>
+                                @else
+                                    <?php $no = 1; ?>
+                                    <tbody>
+                                        @foreach($listUser as $row)
+                                        <tr>
+                                            <td class="text-center">{{$no}}</td>
+                                            <td>
+                                                <div style="text-align:center; vertical-align:middle;">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="button" class="btn btn-danger delete-confirm" data-id="{{ $row->id }}" tooltip="Delete"><i class="cil-trash"></i></button>
+                                                    <button type="button" class="reset-pass btn btn-info btn-md mr-1 btn-reset-pass"  data-reset="{{$row->id}}" tooltip="Reset password"><i class="cil-reload"></i></button>
+                                                </div>
+                                            </td>
+                                            <td style="vertical-align:middle;">{{ $row->name}}</td>
+                                            <td style="vertical-align:middle;">{{ $row->email }}</td>
+                                            <td style="vertical-align:middle;">{{ $row->role }}</td>
+                                        </tr>
+                                        <?php $no++; ?>
+                                        @endforeach
+                                @endif
+                                    </tbody>
+                            </table>
+                            {{ $listUser->links('vendor.pagination.custom') }}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -70,8 +74,8 @@
         var id = $(this).data("id");
         var token = $("meta[name='csrf-token']").attr("content");
         swal({
-            title: 'Are you sure?',
-            text: 'This record and it`s details will be permanantly deleted!',
+            title: 'Apa kamu yakin?',
+            text: 'Data ini akan di hapus permanent!',
             icon: 'warning',
             buttons: ["Cancel", "Yes!"],
         }).then(function(isConfirm) {
@@ -86,11 +90,11 @@
                         method: '_DELETE',
                         submit: true},
                 }).always(function (data) {
-                    swal("Done!","It was succesfully deleted!","success");
+                    swal("Berhasil!","Data berhasil di hapus!","success");
                     location.reload();
                 });
             }else{
-                    swal("Cancelled", "Your imaginary file is safe :)", "error");
+                    swal("Batal", "Data tidak jadi dihapus :)", "error");
             }
         });
     });

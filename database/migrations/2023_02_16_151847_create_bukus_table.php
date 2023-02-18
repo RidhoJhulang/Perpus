@@ -20,7 +20,8 @@ return new class extends Migration
             $table->enum('status',['available','rented','broken']);
             $table->string('nama');
             $table->enum('genre',['novel','fiksi','self-improvement','religi','bisnis']);
-            $table->string('sinopsis');
+            $table->integer('tahun');
+            $table->longText('sinopsis');
             $table->timestamps();
         });
     }

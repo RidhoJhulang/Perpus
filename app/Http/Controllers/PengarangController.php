@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pengarang;
+use Exception;
 use Illuminate\Http\Request;
+use App\Models\Buku;
 
 class PengarangController extends Controller
 {
@@ -13,17 +16,9 @@ class PengarangController extends Controller
      */
     public function index()
     {
-        //
-    }
+        $data = Pengarang::orderByDesc('id')->paginate(10);
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('Master.pengarang.index', compact('data'));
     }
 
     /**
@@ -34,19 +29,22 @@ class PengarangController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+
+            $request->validate([
+                'nama' => 'required',
+                'jenis_kelamin' => 'required',
+                'negara'        => 'required',
+            ]);
+
+            Pengarang::create($request->all());
+
+            return redirect()->route('pengarang.index')->with('success', 'Data Berhasil Ditambahkan');
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', $e->getMessage());
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -56,7 +54,9 @@ class PengarangController extends Controller
      */
     public function edit($id)
     {
-        //
+        $data = Pengarang::find($id);
+
+        return view('Master.pengarang.edit', compact('data'));
     }
 
     /**
@@ -68,7 +68,18 @@ class PengarangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //melakukan validasi data
+        $request->validate([
+            'nama'          => 'required',
+            'jenis_kelamin' => 'required',
+            'negara'        => 'required',
+        ]);
+
+        //fungsi eloquent untuk mengupdate data inputan kita
+        Pengarang::find($id)->update($request->all());
+
+        //jika data berhasil diupdate, akan kembali ke halaman utama
+        return redirect()->route('pengarang.index')->with('success', 'Data Berhasil Diupdate');
     }
 
     /**
@@ -79,6 +90,15 @@ class PengarangController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dataCheck = Buku::where('pengarang_id', '=', $id)
+            ->first();
+
+        if ($dataCheck == null) {
+            Pengarang::find($id)->delete();
+
+            return response()->json(['message' => 'Data deleted successfully'], 200);
+        } else {
+            return response()->json(['message' => 'Data failed deleted, This data used on data book, so delete the book first'], 422);
+        }
     }
 }

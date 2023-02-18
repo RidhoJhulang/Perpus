@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Penerbit extends Model
 {
     use HasFactory;
+
+    protected $table = 'penerbits';
+
+    protected $fillable = [
+        'id',
+        'nama',
+        'alamat'
+    ];
+
+    public $incrementing = true;
+
+    public $timestamps = true;
 }

@@ -20,17 +20,17 @@
             </a>
         </li>
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="{{ route('users.index')}}">
+            <a class="c-sidebar-nav-link" href="{{ route('pengarang.index')}}">
                 <i class="cil-user"></i>&nbsp; Pengarang
             </a>
         </li>
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="{{ route('users.index')}}">
+            <a class="c-sidebar-nav-link" href="{{ route('penerbit.index')}}">
                 <i class="cil-pen"></i>&nbsp; Penerbit
             </a>
         </li>
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="{{ route('users.index')}}">
+            <a class="c-sidebar-nav-link" href="{{ route('buku.index')}}">
                 <i class="cil-book"></i>&nbsp; Buku
             </a>
         </li>
@@ -38,7 +38,7 @@
         @if (Auth::user()->role == 'user' || Auth::user()->role == 'admin' )
         <li class="c-sidebar-nav-title">TRANSAKSI</li>
         <li class="c-sidebar-nav-item">
-            <a class="c-sidebar-nav-link" href="{{ route('users.index')}}">
+            <a class="c-sidebar-nav-link" href="{{ route('peminjaman-buku.index')}}">
                 <i class="cil-money"></i>&nbsp; Peminjaman Buku
             </a>
         </li>

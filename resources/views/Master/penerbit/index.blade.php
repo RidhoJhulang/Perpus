@@ -18,7 +18,7 @@
                 @endif
                 <div class="card">
                     <div class="card-header">
-                        <i class="fa fa-align-justify"></i> List Pengarang
+                        <i class="fa fa-align-justify"></i> List Penerbit
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -27,9 +27,8 @@
                                     <tr>
                                         <th class="text-center">No</th>
                                         <th style="text-align: center;">Action</th>
-                                        <th>Nama Pengarang</th>
-                                        <th>Jenis Kelamin</th>
-                                        <th>Negara</th>
+                                        <th>Nama Penerbit</th>
+                                        <th>Alamat</th>
                                     </tr>
                                 </thead>
                                 @if (count($data) <= 0) 
@@ -44,15 +43,15 @@
                                             <td class="text-center">{{$no}}</td>
                                             <td>
                                                 <div style="text-align:center; vertical-align:middle;">
-                                                    <a class="btn btn-warning" href="{{ route('pengarang.edit',$row->id) }}" class="text-info border-gray border-right pr-2"><i class="fas fa-pen"></i></a>&nbsp;
+                                                    <a class="btn btn-warning" href="{{ route('penerbit.edit',$row->id) }}" class="text-info border-gray border-right pr-2"><i class="fas fa-pen"></i></a>&nbsp;
+                                                    <br>
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="button" class="btn btn-danger delete-confirm" data-id="{{ $row->id }}" tooltip="Delete"><i class="cil-trash"></i></button>
                                                 </div>
                                             </td>
                                             <td style="vertical-align:middle;">{{ $row->nama}}</td>
-                                            <td style="vertical-align:middle;">{{ $row->jenis_kelamin }}</td>
-                                            <td style="vertical-align:middle;">{{ $row->negara }}</td>
+                                            <td style="vertical-align:middle;">{{ $row->alamat }}</td>
                                         </tr>
                                         <?php $no++; ?>
                                         @endforeach
@@ -60,7 +59,7 @@
                                     </tbody>
                             </table>
                             {{ $data->links('vendor.pagination.custom') }}
-                        <div class="table-responsive">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -71,29 +70,21 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="addModal">Tambah Pengarang</h5>
+                <h5 class="modal-title" id="addModal">Tambah Penerbit</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form method="post" action="{{route('pengarang.store')}}">
+                <form method="post" action="{{route('penerbit.store')}}">
                     {{ csrf_field() }}
                     <div class="form-group">
-                        <label for="text-input">Nama Pengarang</label>
-                        <input class="form-control" type="text" name="nama" placeholder="Enter Nama Pengarang.." required><span class="help-block"></span>
+                        <label for="text-input">Nama Penerbit</label>
+                        <input class="form-control" type="text" name="nama" placeholder="Enter Nama Penerbit.." required><span class="help-block"></span>
                     </div>
                     <div class="form-group">
-                        <label for="text-input">Jenis Kelamin</label>
-                        <select class="form-control" name="jenis_kelamin" required>
-                            <option value="" disabled selected>Pilih Jenis Kelamin</option>
-                            <option value="laki-laki">laki-laki</option>
-                            <option value="perempuan">perempuan</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="text-input">Negara</label>
-                        <input class="form-control" type="text" name="negara" placeholder="Enter Negara.." required><span class="help-block"></span>
+                        <label for="text-input">Alamat</label>
+                        <input class="form-control" type="text" name="alamat" placeholder="Enter Jenis Alamat.." required><span class="help-block"></span>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -122,8 +113,8 @@
         }).then(function(isConfirm) {
             if (isConfirm) {
                 $.ajax({
-                    url: "pengarang/destroy/"+id,
-                    type: 'post',
+                    url: "penerbit/"+id,
+                    type: 'DELETE',
                     dataType: 'json',
                     data: {
                         "id": id,
@@ -136,7 +127,7 @@
                 })
                 .error(function( data ) {
                     swal("Oops...", data.responseJSON.message, "error");
-                });                   
+                }); 
             }else{
                     swal("Batal", "Data tidak jadi dihapus :)", "error");
             }
